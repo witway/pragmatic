@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% load static %}
 {% block content %}
 <style>
@@ -64,9 +65,17 @@
       <div>
         <img src="http://picsum.photos/200/290" alt="">
       </div>
-
-
     </div>
+
+    <div style="text-align: center">
+      <a href="{% url 'articleapp:create' %}" class="btn btn-dark rounded-pill col-3 mt-3 mb-3">
+        Create Article
+      </a>
+      <a href="{% url 'articleapp:delete' %}" class="btn btn-dark rounded-pill col-3 mt-3 mb-3">
+        Delete Article
+      </a>
+    </div>
+
 
     <script src="{% static 'js/magicgrid.js' %}"></script>
 {% endblock %}
