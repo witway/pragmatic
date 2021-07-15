@@ -27,6 +27,11 @@
         </a>
         {% endif %}
         <hr>
+
+        {% include 'commentapp/create.html' with article=target_article %}
+        <!--article에 현재 사용하는 target_article 동기화-->
+
+
     </div>
   </div>
 
