@@ -8,10 +8,12 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic.list import MultipleObjectMixin
 
 from accountapp.decorators import account_ownership_required
 from accountapp.forms import AccountUpdateForm
 from accountapp.models import HelloWorld
+from articleapp.models import Article
 
 has_ownership = [account_ownership_required, login_required()]
 
@@ -57,10 +59,16 @@ class AccountDeleteView(DeleteView):
     #     else:
     #         return HttpResponseForbidden()
 
-class AccountDetailView(DetailView):
+class AccountDetailView(DetailView, MultipleObjectMixin):
     model = User
     context_object_name = 'target_user'
     template_name = 'accountapp/detail.html'
+
+    paginate_by = 25
+
+    def get_context_data(self, **kwargs):
+        object_list = Article.objects.filter(writer=self.get_object())
+        return super(AccountDetailView, self).get_context_data(object_list=object_list, **kwargs)
 
 @method_decorator(has_ownership, 'get') #권한이 있는 사용자가 아니면, forbidden 페이지를 출력해줌
 @method_decorator(has_ownership, 'post')
