@@ -15,8 +15,8 @@
                 {% if target_user == user %}
                   <a class = "material-icons"
                      style="box-shadow: 0 0 4px #ccc; border-radius: 10rem; padding: .4rem;"
-                    <!-- 첫, 두번째는 그림자의 위치, 세번째는 그림자의 크기, 네번째는 색갈-->
                      href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                       <!-- 첫, 두번째는 그림자의 위치, 세번째는 그림자의 크기, 네번째는 색갈-->
                       edit
                   </a>
                 {% endif %}
@@ -43,7 +43,6 @@
                style="box-shadow: 0 0 4px #ccc; border-radius: 10rem; padding: .4rem;"
                href="{% url 'accountapp:update' pk=user.pk %}">
                 <p>
-<!--                    Change Info-->
                     settings
                 </p>
             </a>
@@ -51,7 +50,6 @@
                style="box-shadow: 0 0 4px #fcc; border-radius: 10rem; padding: .4rem;"
                href="{% url 'accountapp:delete' pk=user.pk %}">
                 <p>
-<!--                    Quit-->
                     cancel
                 </p>
             </a>

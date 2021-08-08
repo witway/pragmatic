@@ -13,6 +13,9 @@ from articleapp.forms import ArticleCreationForm
 from commentapp.forms import CommentCreationForm
 
 
+
+
+
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
 class ArticleCreateView(CreateView):
@@ -29,11 +32,17 @@ class ArticleCreateView(CreateView):
     def get_success_url(self):
         return reverse('articleapp:detail', kwargs={'pk':self.object.pk})
 
+
+
+
 class ArticleDetailView(DetailView, FormMixin):
     model = Article
     form_class = CommentCreationForm
     context_object_name = 'target_article'
     template_name = 'articleapp/detail.html'
+
+
+
 
 
 @method_decorator(article_ownership_required, 'get')
@@ -47,6 +56,9 @@ class ArticleUpdateView(UpdateView):
     def get_success_url(self):
         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
 
+
+
+
 @method_decorator(article_ownership_required, 'get')
 @method_decorator(article_ownership_required, 'post')
 class ArticleDeleteView(DeleteView):
@@ -54,6 +66,8 @@ class ArticleDeleteView(DeleteView):
     context_object_name = 'target_article'
     success_url = reverse_lazy('articleapp:list')
     template_name = 'articleapp/delete.html'
+
+
 
 class ArticleListView(ListView):
     model = Article

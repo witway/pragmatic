@@ -1,5 +1,4 @@
 from django.http import HttpResponseForbidden
-
 from articleapp.models import Article
 
 
